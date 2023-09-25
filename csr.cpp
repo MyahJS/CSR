@@ -116,7 +116,23 @@ int CSR::getAt(int row, int  col) const{
     // preconditions: matrix has been compressed aka object is not empty
     // postconditions: returns the value at the the given row and column
 
-
+    if (row>=m_m || row<0){  // check if row is out of bounds
+        throw runtime_error("Row index out of bounds");
+    }
+    if (col>=m_n || col<0){
+        throw runtime_error("Column index out of bounds");
+    }
+    
+    int row_start = m_row_index[row];
+    int row_end = m_row_index[row+1];
+    
+    for (int i=row_start; i<row_end; i++){
+        // check if any nonzero elements are in desired column
+        if (m_col_index[i]==col){
+            return m_values[i];
+        }
+    }
+    return 0;
 
 } 
 bool CSR::operator==(const CSR & rhs) const{
@@ -153,6 +169,18 @@ bool CSR::operator==(const CSR & rhs) const{
 
 }
 int CSR::sparseRatio(){
+    // SparseRatio
+    // preconditions: object is not empty
+    // postconditions: calculate and return sparse ratio
+
+    if (m_values!=nullptr){
+        // sparse ratio = zeros / all elements
+        int total = m_m*m_n;
+        int zeros = total - m_nonzeros;
+        int ratio = (zeros/total)*100;
+        return ratio;
+    }
+    return -1;
     
 }
 void CSR::dump(){
