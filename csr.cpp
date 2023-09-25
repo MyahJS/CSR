@@ -80,15 +80,77 @@ bool CSR::empty() const{
 }
 void CSR::compress(int m, int n, int array[], int arraySize){
     // Compress
-    // preconditions: object exists
-    // postconditions: 
-    
+    // preconditions: object exists and a sparce matrix is input
+    // postconditions: creates a compressed sparce row out of the matrix input
+
+    // allocate memory to all arrays
+    m_values = new int[arraySize]; // assume case where all elements are nonzero
+    m_col_index = new int[arraySize];
+    m_row_index = new int[m+1]; // always the number of rows + 1
+    m_m = m;
+    m_n = n;
+
+    // iterate threw array and check for nonzero elements
+    int v = 0;  // to keep track of place in values
+    int c = 0;  // to keep track of place in col_index
+    int r = 0;  // to keep track of place in row_index
+    m_row_index[0] = r;
+    r++; 
+    for (int i=0; i<arraySize; i++){
+        if (array[i]!=0){
+            m_values[v] = array[i];
+            v++;
+            m_col_index[c] = i%n;   // calculate col by doing index % num cols
+            c++;
+        }
+        if ((i+1)%n==0){
+            m_row_index[r] = v+1;
+            r++;
+        }
+    }
+    m_nonzeros = v+1;
+
 }
 int CSR::getAt(int row, int  col) const{
-    
+    // GetAt
+    // preconditions: matrix has been compressed aka object is not empty
+    // postconditions: returns the value at the the given row and column
+
+
+
 } 
 bool CSR::operator==(const CSR & rhs) const{
-    
+    // Overloaded equality operator
+    // preconditions: rhs object exists
+    // postconditions: returns true if all members are exactly the same
+
+    bool result = true;
+    result = result && (m_nonzeros==rhs.m_nonzeros);
+    result = result && (m_m==rhs.m_m);
+    result = result && (m_n==rhs.m_n);
+
+    if (result){
+        if (m_values!=nullptr){
+            int v_size = sizeof(m_values)/sizeof(m_values[0]);
+            int c_size = v_size;
+            int r_size = m_m+1;
+            for (int i=0; i<v_size; i++){
+                result = result && (m_values[i]==rhs.m_values[i]);
+            }
+            for (int i=0; i<c_size; i++){
+                result = result && (m_col_index[i]==rhs.m_col_index[i]);
+            }
+            for (int i=0; i<r_size; i++){
+                result = result && (m_row_index[i]==rhs.m_row_index[i]);
+            }
+        } else {
+            result = result && (m_values==rhs.m_values);
+            result = result && (m_col_index==rhs.m_col_index);
+            result = result && (m_row_index==rhs.m_row_index);
+        }
+    }
+    return result;
+
 }
 int CSR::sparseRatio(){
     
