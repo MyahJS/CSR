@@ -202,22 +202,57 @@ void CSR::dump(){
 
 //////////////CSRList Class Implementation///////////////
 CSRList::CSRList(){
-    
+    // Default constructor
+    // preconditions: none
+    // postconditions: makes an empty CSR list
+
+    m_head = nullptr;
+    m_size = 0;
 }
 CSRList::CSRList(const CSRList & rhs){
-    
+    // Copy constructor
+    // preconditions: rhs exists
+    // postconditions: create a copy of the list in the parameter
+
+    m_head = rhs.m_head;
+    m_size = rhs.m_size;
 }
 CSRList::~CSRList(){
-    
+    // Destructor
+    // preconditions: list is not empty
+    // postconditions: deallocate all memory from the list
+
+    CSR* curr = m_head;
+    while (curr!=nullptr){
+        delete curr;
+        curr = curr->m_next;
+    }
 }
 bool CSRList::empty() const{
-    
+    // Empty
+    // preconditions: list exists
+    // postconditions: return true if list is empty, else return false
+
+    if (m_head==nullptr){
+        return true;
+    } 
+    return false;
 }
 void CSRList::insertAtHead(const CSR & matrix){
     
 }
 void CSRList::clear(){
-    
+    // Clear
+    // preconditions: list is not empty
+    // post conditions: deallocate memory and create empty list
+
+    CSR* curr = m_head;
+    while (curr!=nullptr){
+        delete curr;
+        curr = curr->m_next;
+    }
+    m_head = nullptr;
+    m_size = 0;
 }
 
 int CSRList::getAt(int CSRIndex, int row, int col) const{
