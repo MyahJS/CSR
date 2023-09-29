@@ -98,7 +98,6 @@ void CSR::compress(int m, int n, int array[], int arraySize){
     r++; 
     for (int i=0; i<arraySize; i++){
         if (array[i]!=0){
-            cout << array[i] << i%n << endl;
             m_values[v] = array[i];
             v++;
             m_col_index[c] = i%n;   // calculate col by doing index % num cols
