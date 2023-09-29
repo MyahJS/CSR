@@ -319,17 +319,6 @@ const CSRList& CSRList::operator=(const CSRList & rhs){
     // postconditions:
 
     clear();
-    // if (rhs.m_head!=nullptr){
-    //     m_head = new CSR(*rhs.m_head);
-    //     CSR* curr = m_head->m_next;
-    //     CSR* r_curr = rhs.m_head->m_next;
-    //     while (r_curr!=nullptr){
-    //         curr = new CSR(*r_curr);
-    //         curr = curr->m_next;
-    //         r_curr = r_curr->m_next;
-    //     }
-    //     m_size = rhs.m_size;
-    // }
     m_head = rhs.m_head;
     m_size = rhs.m_size;
     return *this;
@@ -340,13 +329,13 @@ int CSRList::averageSparseRatio(){
     // postconditions:
 
     if (m_size!=0){
-        int total = 0;
+        double total = 0;
         CSR* curr = m_head;
         while (curr!=nullptr){
             total += curr->sparseRatio();
             curr = curr->m_next;
         }
-        return total/m_size;
+        return int(total)/m_size;
     }
     return 0;
 }

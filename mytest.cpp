@@ -28,6 +28,10 @@ int main() {
         bCSRList.dump();
         cout << endl << "Dumping cCSRList:" << endl;
         cCSRList.dump();
+
+        cout << endl << aCSRList.averageSparseRatio() << endl;
+        cout << bCSRList.averageSparseRatio() << endl;
+        cout << cCSRList.averageSparseRatio() << endl;
         
         cout << endl << aCSRList.getAt(1,2,4) << endl;//returns the value 70
 
