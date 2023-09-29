@@ -14,16 +14,15 @@ int main() {
     testFull.dump();
     CSR testCopy(testFull);
     testCopy.dump();
+    cout << (testFull==testCopy) << endl;
     CSR testEmptyCopy(testEmpty);
     testEmptyCopy.dump();
-    testFull.clear();
-    testFull.dump();
     int array2[] = {0,0,0,0,100,200,0,0,300};
     CSR testGetAt;
     testGetAt.compress(3,3,array2,9);
     testGetAt.dump();
     cout << testGetAt.getAt(2,2) << endl;
-    
+
 
     return 0;
 }
