@@ -56,6 +56,7 @@ int main() {
     //     cout << e.what() << endl;
     // }
     CSRList cCSRList(aCSRList);
+    cout << endl << "Dumping cCSRList:" << endl;
     cCSRList.dump();
     cout << (aCSRList==cCSRList) << endl;
     
