@@ -249,12 +249,13 @@ void CSRList::insertAtHead(const CSR & matrix){
     // postconditions: insert a new matrix at the head of the list
 
     if (m_head==nullptr){
-        *m_head = matrix;
+        m_head = new CSR(matrix);
         m_size = 1;
     } else {
         CSR* temp = m_head;
-        *m_head = matrix;
+        m_head = new CSR(matrix);
         m_head->m_next = temp;
+        m_size++;
     }
 }
 void CSRList::clear(){
@@ -312,8 +313,16 @@ const CSRList& CSRList::operator=(const CSRList & rhs){
     // postconditions:
 
     clear();
-    m_head = rhs.m_head;
-    m_size = rhs.m_size;
+    if (rhs.m_head!=nullptr){
+        m_head = new CSR(*rhs.m_head);
+        CSR* curr = m_head->m_next;
+        CSR* r_curr = rhs.m_head->m_next;
+        while (r_curr!=nullptr){
+            curr = new CSR(*r_curr);
+            curr = curr->m_next;
+            r_curr = r_curr->m_next;
+        }
+    }
     return *this;
 }
 int CSRList::averageSparseRatio(){
