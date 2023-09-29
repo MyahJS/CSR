@@ -220,13 +220,13 @@ CSRList::CSRList(const CSRList & rhs){
 
     if (rhs.m_head!=nullptr){
         m_head = new CSR(*rhs.m_head);
-        CSR* curr = m_head->m_next;
-        CSR* r_curr = rhs.m_head->m_next;
-        while (r_curr!=nullptr){
-            curr = new CSR(*r_curr);
-            curr = curr->m_next;
-            r_curr = r_curr->m_next;
-        }
+        // CSR* curr = m_head->m_next;
+        // CSR* r_curr = rhs.m_head->m_next;
+        // while (r_curr!=nullptr){
+        //     curr = new CSR(*r_curr);
+        //     curr = curr->m_next;
+        //     r_curr = r_curr->m_next;
+        // }
         m_size = rhs.m_size;
     } else {
         m_head = rhs.m_head;
