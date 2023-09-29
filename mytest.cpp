@@ -35,6 +35,10 @@ int main() {
     CSR dCSR(cCSR);
     CSRList aCSRList;
     aCSRList.insertAtHead(aCSR);
+    aCSRList.insertAtHead(cCSR);
+    CSRList bCSRList;
+    bCSRList.insertAtHead(dCSR);
+    bCSRList.insertAtHead(bCSR);
 
     return 0;
 }
