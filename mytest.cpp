@@ -12,8 +12,10 @@ int main() {
     CSR testFull;
     testFull.compress(4,6,array1,24);
     testFull.dump();
-    testFull.clear();
-    testFull.dump();
+    CSR testCopy(testFull);
+    testCopy.dump();
+    // testFull.clear();
+    // testFull.dump();
 
     return 0;
 }
