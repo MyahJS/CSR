@@ -238,15 +238,16 @@ CSRList::~CSRList(){
     // preconditions: list is not empty
     // postconditions: deallocate all memory from the list
     
+    cout << "destructing..." << endl;
     if (m_head!=nullptr){
         CSR* curr = m_head;
-        while (curr!=nullptr){
+        while (m_size>0){
             CSR* temp = curr->m_next;
             delete curr;
             curr = temp;
+            m_size--;
         }
-    }
-    m_size = 0;    
+    }    
 }
 bool CSRList::empty() const{
     // Empty
