@@ -279,7 +279,7 @@ int CSRList::getAt(int CSRIndex, int row, int col) const{
     // postconditions: return the value at the given coordinates of the matrix at the given index
 
     if (!empty()){
-        if (CSRIndex<=m_size){
+        if (0<CSRIndex || CSRIndex<=m_size){
             CSR* curr = m_head;
             for (int i=1; i<=CSRIndex; i++){
                 curr = curr->m_next;
