@@ -41,7 +41,7 @@ CSR::CSR(const CSR & rhs){
         for (int i=0; i<rhs.m_nonzeros; i++){
             m_col_index[i] = rhs.m_col_index[i];
         }
-        for (int i=0; i<(m_m+1); i++){
+        for (int i=0; i<(rhs.m_m+1); i++){
             m_row_index[i] = rhs.m_row_index[i];
         }
     } else {
