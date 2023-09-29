@@ -310,17 +310,18 @@ bool CSRList::operator== (const CSRList & rhs) const{
     // postconditions:
 
     if (m_size!=rhs.m_size){
-        return 0;
+        return false;
     } else {
+        bool result = true;
         CSR* curr = m_head;
         CSR* r_curr = rhs.m_head;
         while (curr!=nullptr || r_curr!=nullptr){
-            if (curr!=r_curr){
-                return false;
-            }
+            result = result && (*curr==*r_curr);
+            curr = curr->m_next;
+            r_curr = r_curr->m_next;
         }
+        return result;
     }
-    return true;
 }
 const CSRList& CSRList::operator=(const CSRList & rhs){
     // Assignment operator
