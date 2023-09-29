@@ -44,12 +44,18 @@ int main() {
     cout << endl << "Dumping bCSRList:" << endl;
     bCSRList.dump();
     try{
-        cout << endl << aCSRList.getAt(1,2,4) << endl;
+        cout << endl << aCSRList.getAt(1,2,4) << endl; 
+    }
+    catch (exception &e){
+        cout << e.what() << endl;
+    }
+    try{
         cout << endl << aCSRList.getAt(5,2,2) << endl;
     }
     catch (exception &e){
         cout << e.what() << endl;
     }
-
+    CSRList cCSRList(aCSRList);
+    
     return 0;
 }
