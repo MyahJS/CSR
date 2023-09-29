@@ -30,7 +30,6 @@ CSR::CSR(const CSR & rhs){
     // precondtions: rhs is an existing object
     // postcondtions: create an identical object and return it
 
-    clear();
     if (rhs.m_values != nullptr){
         m_values = new int[rhs.m_nonzeros]; 
         m_col_index = new int[rhs.m_nonzeros];
