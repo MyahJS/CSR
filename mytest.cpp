@@ -56,6 +56,7 @@ int main() {
         cout << e.what() << endl;
     }
     CSRList cCSRList(aCSRList);
+    cCSRList.dump();
     
     return 0;
 }
