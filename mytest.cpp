@@ -14,6 +14,8 @@ int main() {
     testFull.dump();
     CSR testCopy(testFull);
     testCopy.dump();
+    CSR testEmptyCopy(testEmpty);
+    testEmptyCopy.dump();
     // testFull.clear();
     // testFull.dump();
 
