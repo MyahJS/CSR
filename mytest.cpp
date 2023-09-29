@@ -15,6 +15,7 @@ int main() {
     CSR testCopy(testFull);
     testCopy.dump();
     cout << (testFull==testCopy) << endl;
+    cout << (testEmpty==testCopy) << endl;
     CSR testEmptyCopy(testEmpty);
     testEmptyCopy.dump();
     int array2[] = {0,0,0,0,100,200,0,0,300};
