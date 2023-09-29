@@ -27,5 +27,13 @@ int main() {
     cout << testFull.sparseRatio() << endl;
     cout << testGetAt.sparseRatio() << endl;
 
+    CSR aCSR;
+    aCSR.compress(4,6,array1,24);
+    CSR bCSR(aCSR);
+    CSR cCSR;
+    cCSR.compress(3,3,array2,9);
+    CSR dCSR(cCSR);
+    CSRList aCSRList;
+
     return 0;
 }
