@@ -242,7 +242,7 @@ CSRList::~CSRList(){
         CSR* curr = m_head;
         while (curr!=nullptr){
             cout << m_size << endl;
-            cout << curr << endl;
+            curr->dump();
             CSR* temp = curr->m_next;
             delete curr;
             curr = temp;
