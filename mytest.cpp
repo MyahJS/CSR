@@ -19,9 +19,9 @@ int main() {
         CSRList aCSRList;//create aCSRList
         aCSRList.insertAtHead(aCSR);
         aCSRList.insertAtHead(cCSR);
-        CSRList bCSRList;//create bCSRList
-        bCSRList.insertAtHead(dCSR);
-        bCSRList.insertAtHead(bCSR);
+        CSRList bCSRList(aCSRList);//create bCSRList
+        // bCSRList.insertAtHead(dCSR);
+        // bCSRList.insertAtHead(bCSR);
 
         cout << endl << "Dumping aCSRList:" << endl;
         aCSRList.dump();
