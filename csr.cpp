@@ -281,14 +281,14 @@ int CSRList::getAt(int CSRIndex, int row, int col) const{
     if (!empty()){
         if (0<CSRIndex || CSRIndex<=m_size){
             CSR* curr = m_head;
-            for (int i=1; i<=CSRIndex; i++){
+            for (int i=1; i<CSRIndex; i++){
                 curr = curr->m_next;
             }
             return curr->getAt(row, col);
         }
         throw runtime_error("List index out of range");    
     }
-    return -1;
+    return 0;
 }
 bool CSRList::operator== (const CSRList & rhs) const{
     // Equality operator
