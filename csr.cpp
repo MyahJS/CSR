@@ -241,6 +241,7 @@ CSRList::~CSRList(){
     if (m_head!=nullptr){
         CSR* curr = m_head;
         while (curr!=nullptr){
+            cout << m_size << endl;
             CSR* temp = curr->m_next;
             delete curr;
             curr = temp;
