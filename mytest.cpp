@@ -7,6 +7,7 @@ class Tester{
 
 int main() {
     CSR testEmpty;
+    testEmpty.dump();
     int array1[] = {10,20,0,0,0,0,0,30,0,40,0,0,0,0,50,60,70,0,0,0,0,0,0,80};
     CSR testFull;
     testFull.compress(4,6,array1,24);
