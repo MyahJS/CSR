@@ -239,7 +239,18 @@ bool CSRList::empty() const{
     return false;
 }
 void CSRList::insertAtHead(const CSR & matrix){
-    
+    // InsertAtHead
+    // preconditions: list exists
+    // postconditions: insert a new matrix at the head of the list
+
+    if (m_head==nullptr){
+        *m_head = matrix;
+        m_size = 1;
+    } else {
+        CSR* temp = m_head;
+        *m_head = matrix;
+        m_head->m_next = temp;
+    }
 }
 void CSRList::clear(){
     // Clear
@@ -256,16 +267,64 @@ void CSRList::clear(){
 }
 
 int CSRList::getAt(int CSRIndex, int row, int col) const{
-    
+    // GetAt
+    // preconditions: there is a node at CSRIndex
+    // postconditions: return the value at the given coordinates of the matrix at the given index
+
+    if (!empty()){
+        if (CSRIndex<m_size){
+            CSR* curr = m_head;
+            for (int i=1; i<CSRIndex; i++){
+                curr = curr->m_next;
+            }
+            return curr->getAt(row, col);
+        }
+        throw runtime_error("List index out of range");    
+    }
+    return -1;
 }
 bool CSRList::operator== (const CSRList & rhs) const{
-    
+    // Equality operator
+    // preconditions: 
+    // postconditions:
+
+    if (m_size!=rhs.m_size){
+        return 0;
+    } else {
+        CSR* curr = m_head;
+        CSR* r_curr = rhs.m_head;
+        while (curr!=nullptr || r_curr!=nullptr){
+            if (curr!=r_curr){
+                return false;
+            }
+        }
+    }
+    return true;
 }
 const CSRList& CSRList::operator=(const CSRList & rhs){
-    
+    // Assignment operator
+    // preconditions:
+    // postconditions:
+
+    clear();
+    m_head = rhs.m_head;
+    m_size = rhs.m_size;
 }
 int CSRList::averageSparseRatio(){
-    
+    // AverageSparseRatio
+    // preconditions:
+    // postconditions:
+
+    if (m_size!=0){
+        int total = 0;
+        CSR* curr = m_head;
+        while (curr!=nullptr){
+            total += curr->sparseRatio();
+            curr = curr->m_next;
+        }
+        return total/m_size;
+    }
+    return 0;
 }
 void CSRList::dump(){
     if (!empty()){
