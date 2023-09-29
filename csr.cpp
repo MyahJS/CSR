@@ -309,6 +309,7 @@ const CSRList& CSRList::operator=(const CSRList & rhs){
     clear();
     m_head = rhs.m_head;
     m_size = rhs.m_size;
+    return *this;
 }
 int CSRList::averageSparseRatio(){
     // AverageSparseRatio
