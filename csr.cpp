@@ -181,8 +181,9 @@ int CSR::sparseRatio(){
         // sparse ratio = zeros / all elements
         int total = m_m*m_n;
         int zeros = total - m_nonzeros;
-        int ratio = (zeros/total)*100;
-        return ratio;
+        float ratio = zeros/total;
+        int ratio_percent = ratio*100;
+        return ratio_percent;
     }
     return -1;
     
