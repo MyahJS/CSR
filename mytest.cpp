@@ -43,6 +43,7 @@ int main() {
     aCSRList.dump();
     cout << endl << "Dumping bCSRList:" << endl;
     bCSRList.dump();
+    cout << endl << aCSRList.getAt(1,2,4) << endl;
 
     return 0;
 }
