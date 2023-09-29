@@ -105,11 +105,11 @@ void CSR::compress(int m, int n, int array[], int arraySize){
             c++;
         }
         if ((i+1)%n==0){
-            m_row_index[r] = v+1;
+            m_row_index[r] = v;
             r++;
         }
     }
-    m_nonzeros = v+1;
+    m_nonzeros = v;
 
 }
 int CSR::getAt(int row, int  col) const{
