@@ -30,7 +30,7 @@ CSR::CSR(const CSR & rhs){
     // precondtions: rhs is an existing object
     // postcondtions: create an identical object and return it
 
-    
+    clear();
     if (rhs.m_values != nullptr){
         m_values = new int[rhs.m_nonzeros]; 
         m_col_index = new int[rhs.m_nonzeros];
@@ -238,13 +238,15 @@ CSRList::~CSRList(){
     // Destructor
     // preconditions: list is not empty
     // postconditions: deallocate all memory from the list
-
-    CSR* curr = m_head;
-    while (curr!=nullptr){
-        CSR* temp = curr->m_next;
-        delete curr;
-        curr = temp;
-    }
+    
+    if (m_head!=nullptr){
+        CSR* curr = m_head;
+        while (curr!=nullptr){
+            CSR* temp = curr->m_next;
+            delete curr;
+            curr = temp;
+        }
+    }    
 }
 bool CSRList::empty() const{
     // Empty
