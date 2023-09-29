@@ -229,8 +229,9 @@ CSRList::~CSRList(){
 
     CSR* curr = m_head;
     while (curr!=nullptr){
+        CSR* temp = curr->m_next;
         delete curr;
-        curr = curr->m_next;
+        curr = temp;
     }
 }
 bool CSRList::empty() const{
