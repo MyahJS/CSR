@@ -57,6 +57,7 @@ int main() {
     }
     CSRList cCSRList(aCSRList);
     cCSRList.dump();
+    cout << (aCSRList==cCSRList) << endl;
     
     return 0;
 }
