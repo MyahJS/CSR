@@ -6,59 +6,34 @@ class Tester{
 };
 
 int main() {
-    int array1[] = {10,20,0,0,0,0,0,30,0,40,0,0,0,0,50,60,70,0,0,0,0,0,0,80};
-    int array2[] = {0,0,0,0,100,200,0,0,300};
-    // CSR testEmpty;
-    // testEmpty.dump();
-    // CSR testFull;
-    // testFull.compress(4,6,array1,24);
-    // testFull.dump();
-    // CSR testCopy(testFull);
-    // testCopy.dump();
-    // cout << (testFull==testCopy) << endl;
-    // cout << (testEmpty==testCopy) << endl;
-    // CSR testEmptyCopy(testEmpty);
-    // testEmptyCopy.dump();
-    // CSR testGetAt;
-    // testGetAt.compress(3,3,array2,9);
-    // testGetAt.dump();
-    // cout << testGetAt.getAt(2,2) << endl;
-    // cout << testEmpty.sparseRatio() << endl;
-    // cout << testFull.sparseRatio() << endl;
-    // cout << testGetAt.sparseRatio() << endl;
+    try {     
+        CSR aCSR;
+        int array1[] = {10,20,0,0,0,0,0,30,0,40,0,0,0,0,50,60,70,0,0,0,0,0,0,80};
+        aCSR.compress(4,6,array1,24);//initialize object aCSR
+        CSR bCSR(aCSR);//create bCSR using copy constructor
+        CSR cCSR;
+        int array2[] = {0,0,0,0,100,200,0,0,300};
+        cCSR.compress(3,3,array2,9);//initialize object cCSR
+        CSR dCSR(cCSR);//create dCSR using copy constructor
 
-    CSR aCSR;
-    aCSR.compress(4,6,array1,24);
-    CSR bCSR(aCSR);
-    CSR cCSR;
-    cCSR.compress(3,3,array2,9);
-    CSR dCSR(cCSR);
-    CSRList aCSRList;
-    aCSRList.insertAtHead(aCSR);
-    aCSRList.insertAtHead(cCSR);
-    CSRList bCSRList;
-    bCSRList.insertAtHead(dCSR);
-    bCSRList.insertAtHead(bCSR);
-    cout << endl << "Dumping aCSRList:" << endl;
-    aCSRList.dump();
-    cout << endl << "Dumping bCSRList:" << endl;
-    bCSRList.dump();
-    // try{
-    //     cout << endl << aCSRList.getAt(1,2,4) << endl; 
-    // }
-    // catch (exception &e){
-    //     cout << e.what() << endl;
-    // }
-    // try{
-    //     cout << endl << aCSRList.getAt(5,2,2) << endl;
-    // }
-    // catch (exception &e){
-    //     cout << e.what() << endl;
-    // }
-    CSRList cCSRList(aCSRList);
-    cout << endl << "Dumping cCSRList:" << endl;
-    cCSRList.dump();
-    cout << (aCSRList==cCSRList) << endl;
-    
+        CSRList aCSRList;//create aCSRList
+        aCSRList.insertAtHead(aCSR);
+        aCSRList.insertAtHead(cCSR);
+        CSRList bCSRList;//create bCSRList
+        bCSRList.insertAtHead(dCSR);
+        bCSRList.insertAtHead(bCSR);
+
+        cout << endl << "Dumping aCSRList:" << endl;
+        aCSRList.dump();
+        cout << endl << "Dumping bCSRList:" << endl;
+        bCSRList.dump();
+        
+        cout << endl << aCSRList.getAt(1,2,4) << endl;//returns the value 70
+
+        cout << endl << aCSRList.getAt(5,2,2) << endl;//throws an exception
+    }
+    catch (exception &e){
+        cout << e.what() << endl;
+    }
     return 0;
 }
