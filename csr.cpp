@@ -242,11 +242,13 @@ CSRList::~CSRList(){
         CSR* curr = m_head;
         while (curr!=nullptr){
             cout << m_size << endl;
+            cout << curr << endl;
             CSR* temp = curr->m_next;
             delete curr;
             curr = temp;
         }
-    }    
+    }
+    m_size = 0;    
 }
 bool CSRList::empty() const{
     // Empty
