@@ -34,6 +34,7 @@ int main() {
     cCSR.compress(3,3,array2,9);
     CSR dCSR(cCSR);
     CSRList aCSRList;
+    aCSRList.insertAtHead(aCSR);
 
     return 0;
 }
