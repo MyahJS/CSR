@@ -39,6 +39,10 @@ int main() {
     CSRList bCSRList;
     bCSRList.insertAtHead(dCSR);
     bCSRList.insertAtHead(bCSR);
+    cout << endl << "Dumping aCSRList:" << endl;
+    aCSRList.dump();
+    cout << endl << "Dumping bCSRList:" << endl;
+    bCSRList.dump();
 
     return 0;
 }
