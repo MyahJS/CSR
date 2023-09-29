@@ -23,7 +23,9 @@ int main() {
     testGetAt.compress(3,3,array2,9);
     testGetAt.dump();
     cout << testGetAt.getAt(2,2) << endl;
-
+    cout << testEmpty.sparseRatio() << endl;
+    cout << testFull.sparseRatio() << endl;
+    cout << testGetAt.sparseRatio() << endl;
 
     return 0;
 }
