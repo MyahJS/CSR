@@ -30,7 +30,11 @@ CSR::CSR(const CSR & rhs){
     // precondtions: rhs is an existing object
     // postcondtions: create an identical object and return it
 
+    
     if (rhs.m_values != nullptr){
+        m_values = new int[rhs.m_nonzeros]; 
+        m_col_index = new int[rhs.m_nonzeros];
+        m_row_index = new int[rhs.m_m+1];
         for (int i=0; i<rhs.m_nonzeros; i++){
             m_values[i] = rhs.m_values[i];
         }
