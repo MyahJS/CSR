@@ -16,8 +16,13 @@ int main() {
     testCopy.dump();
     CSR testEmptyCopy(testEmpty);
     testEmptyCopy.dump();
-    // testFull.clear();
-    // testFull.dump();
+    testFull.clear();
+    testFull.dump();
+    int array2[] = {0,0,0,0,100,200,0,0,300};
+    CSR testGetAt;
+    testGetAt.compress(3,3,array2,9);
+    cout << testGetAt.getAt(2,2) << endl;
+    
 
     return 0;
 }
