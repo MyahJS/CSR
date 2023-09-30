@@ -220,13 +220,11 @@ CSRList::CSRList(const CSRList & rhs){
     
     m_size = rhs.m_size;
     if (rhs.m_head!=nullptr){
-        m_head = new CSR;
-        *m_head = *(rhs.m_head);
         CSR* curr = m_head;
         CSR* r_curr = rhs.m_head;
         while (r_curr!=nullptr){
-            curr->m_next = new CSR;
-            *(curr->m_next) = *(r_curr->m_next);
+            curr = new CSR;
+            *curr = *r_curr;
             curr = curr->m_next;
             r_curr = r_curr->m_next;
         }
