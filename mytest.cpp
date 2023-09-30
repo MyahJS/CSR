@@ -19,19 +19,17 @@ int main() {
         CSRList aCSRList;//create aCSRList
         aCSRList.insertAtHead(aCSR);
         aCSRList.insertAtHead(cCSR);
-        CSRList bCSRList(aCSRList);//create bCSRList
+        // CSRList bCSRList(aCSRList);//create bCSRList
         CSRList cCSRList = aCSRList;
 
         cout << endl << "Dumping aCSRList:" << endl;
         aCSRList.dump();
-        cout << endl << "Dumping bCSRList:" << endl;
-        bCSRList.dump();
+        // cout << endl << "Dumping bCSRList:" << endl;
+        // bCSRList.dump();
         cout << endl << "Dumping cCSRList:" << endl;
         cCSRList.dump();
 
         cout << endl << aCSRList.averageSparseRatio() << endl;
-        cout << bCSRList.averageSparseRatio() << endl;
-        cout << cCSRList.averageSparseRatio() << endl;
         
         cout << endl << aCSRList.getAt(1,2,4) << endl;//returns the value 70
 
