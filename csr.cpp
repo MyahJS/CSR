@@ -217,9 +217,22 @@ CSRList::CSRList(const CSRList & rhs){
     // Copy constructor
     // preconditions: rhs exists
     // postconditions: create a copy of the list in the parameter
-
-    m_head = rhs.m_head;
+    
     m_size = rhs.m_size;
+    if (rhs.m_head!=nullptr){
+        m_head = new CSR;
+        *m_head = *(rhs.m_head);
+        CSR* curr = m_head;
+        CSR* r_curr = rhs.m_head;
+        while (r_curr!=nullptr){
+            curr->m_next = new CSR;
+            *(curr->m_next) = *(r_curr->m_next);
+            curr = curr->m_next;
+            r_curr = r_curr->m_next;
+        }
+    } else {
+        m_head = rhs.m_head;
+    }
 }
 CSRList::~CSRList(){
     // Destructor
