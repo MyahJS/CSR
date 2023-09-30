@@ -335,7 +335,7 @@ int CSRList::averageSparseRatio(){
             total += curr->sparseRatio();
             curr = curr->m_next;
         }
-        cout << total << m_size << endl;
+        cout << total << " " << m_size << endl;
         int avg = total/m_size;
         return avg;
     }
