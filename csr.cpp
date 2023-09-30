@@ -239,7 +239,6 @@ CSRList::~CSRList(){
     // preconditions: list is not empty
     // postconditions: deallocate all memory from the list
     
-    cout << "destructing..." << endl;
     CSR* curr = m_head;
     while (curr!=nullptr){
         CSR* temp = curr->m_next;
