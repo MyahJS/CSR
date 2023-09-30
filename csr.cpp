@@ -246,7 +246,9 @@ CSRList::~CSRList(){
             curr = temp;
             m_size--;
         }
-    }    
+    }
+    m_head = nullptr;
+    m_size = 0;    
 }
 bool CSRList::empty() const{
     // Empty
