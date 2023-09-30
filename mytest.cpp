@@ -20,14 +20,14 @@ int main() {
         aCSRList.insertAtHead(aCSR);
         aCSRList.insertAtHead(cCSR);
         CSRList bCSRList(aCSRList);//create bCSRList
-        // CSRList cCSRList = aCSRList;
+        CSRList cCSRList = aCSRList;
 
         cout << endl << "Dumping aCSRList:" << endl;
         aCSRList.dump();
         cout << endl << "Dumping bCSRList:" << endl;
         bCSRList.dump();
-        // cout << endl << "Dumping cCSRList:" << endl;
-        // cCSRList.dump();
+        cout << endl << "Dumping cCSRList:" << endl;
+        cCSRList.dump();
 
         cout << endl << aCSRList.averageSparseRatio() << endl;
         
