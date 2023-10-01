@@ -2,41 +2,122 @@
 #include "csr.h"
 
 class Tester{
-    
+    public:
+        // tests for CSR class
+        bool compressTest(){
+            // define result flag
+            // will be returned at end of all tests
+            bool all_result = true;
+            // Case 1: normal case
+            // input array size matches number of rows and cols
+            bool result = true;
+            int matrix1[] = {
+                1, 0, 0,
+                0, 0, 2,
+                0, 3, 0,
+                0, 0, 0
+            };
+            CSR csrNormal;
+            csrNormal.compress(4, 3, matrix1, 12);
+            result = result && (csrNormal.m_m == 4);
+            result = result && (csrNormal.m_n == 3);
+            result = result && (csrNormal.m_nonzeros == 3);
+            result = result && (csrNormal.m_values[0] == 1);
+            result = result && (csrNormal.m_values[1] == 2);
+            result = result && (csrNormal.m_values[2] == 3);
+            result = result && (csrNormal.m_col_index[0] == 0);
+            result = result && (csrNormal.m_col_index[1] == 2);
+            result = result && (csrNormal.m_col_index[2] == 1);
+            result = result && (csrNormal.m_row_index[0] == 0);
+            result = result && (csrNormal.m_row_index[1] == 1);
+            result = result && (csrNormal.m_row_index[2] == 2);
+            result = result && (csrNormal.m_row_index[3] == 3);
+            result = result && (csrNormal.m_row_index[4] == 3);
+            cout << endl << "Compress normal case: ";
+            if (result){
+                cout << "PASS" << endl;
+            } else {
+                cout << "FAIL" << endl;
+            }
+            all_result = all_result && result;
+
+            // Case 2: error case 1
+            // input array is less than number of rows and cols
+            result = true;
+            int matrix2[] = {
+                0, 1, 0, 
+                0
+            };
+            CSR csrError1;
+            csrError1.compress(4, 3, matrix2, 4);
+            result = result && (csrError1.m_m == 4);
+            result = result && (csrError1.m_n == 3);
+            result = result && (csrError1.m_nonzeros == 1);
+            result = result && (csrError1.m_values[0] == 1);
+            result = result && (csrError1.m_col_index[0] == 1);
+            result = result && (csrError1.m_row_index[0] == 0);
+            result = result && (csrError1.m_row_index[1] == 1);
+            result = result && (csrError1.m_row_index[2] == 1);
+            result = result && (csrError1.m_row_index[3] == 1);
+            result = result && (csrError1.m_row_index[4] == 1);
+            cout << endl << "Compress first error case: ";
+            if (result){
+                cout << "PASS" << endl;
+            } else {
+                cout << "FAIL" << endl;
+            }
+            all_result = all_result && result;
+
+            // Case 3: error case 2
+            // m and n are 0 but input array is not empty
+            result = true;
+            int matrix3[] = {
+                1, 2, 3,
+                4, 5, 6
+            };
+            CSR csrError2;
+            csrError2.compress(0, 0, matrix3, 6);
+            result = result && (csrError2.m_m == 0);
+            result = result && (csrError2.m_n == 0);
+            result = result && (csrError2.m_nonzeros == 0);
+            result = result && (csrError2.m_values == nullptr);
+            result = result && (csrError2.m_col_index == nullptr);
+            result = result && (csrError2.m_row_index == nullptr);
+            cout << endl << "Compress second error case: ";
+            if (result){
+                cout << "PASS" << endl;
+            } else {
+                cout << "FAIL" << endl;
+            }
+            all_result = all_result && result;
+
+            return all_result;
+        }
+        bool equalityOperatorTest(){
+
+        }
+        bool getAtTest(){
+
+        }
+        // tests for CSRList class
+        bool assignmentOperatorTest(){
+
+        }
+        bool getAtTest(){
+
+        }
+    private:
+    // for possible helpers
 };
 
 int main() {
-    try {     
-        CSR aCSR;
-        int array1[] = {10,20,0,0,0,0,0,30,0,40,0,0,0,0,50,60,70,0,0,0,0,0,0,80};
-        aCSR.compress(4,6,array1,24);//initialize object aCSR
-        CSR bCSR(aCSR);//create bCSR using copy constructor
-        CSR cCSR;
-        int array2[] = {0,0,0,0,100,200,0,0,300};
-        cCSR.compress(3,3,array2,9);//initialize object cCSR
-        CSR dCSR(cCSR);//create dCSR using copy constructor
+    Tester test;
 
-        CSRList aCSRList;//create aCSRList
-        aCSRList.insertAtHead(aCSR);
-        aCSRList.insertAtHead(cCSR);
-        CSRList bCSRList(aCSRList);//create bCSRList
-        CSRList cCSRList = aCSRList;
-
-        cout << endl << "Dumping aCSRList:" << endl;
-        aCSRList.dump();
-        cout << endl << "Dumping bCSRList:" << endl;
-        bCSRList.dump();
-        cout << endl << "Dumping cCSRList:" << endl;
-        cCSRList.dump();
-
-        cout << endl << aCSRList.averageSparseRatio() << endl;
-        
-        cout << endl << aCSRList.getAt(1,2,4) << endl;//returns the value 70
-
-        cout << endl << aCSRList.getAt(5,2,2) << endl;//throws an exception
+    if (test.compressTest()){
+        cout << endl << "Compress function passed for all cases!" << endl;
+    } else {
+        cout << endl << "Compress function did not pass for all cases!" << endl;
     }
-    catch (exception &e){
-        cout << e.what() << endl;
-    }
+
     return 0;
 }
