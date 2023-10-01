@@ -50,7 +50,6 @@ class Tester{
             };
             CSR csrError1;
             csrError1.compress(4, 3, matrix2, 4);
-            csrError1.dump();
             result = result && (csrError1.m_m == 4);
             result = result && (csrError1.m_n == 3);
             result = result && (csrError1.m_nonzeros == 1);
@@ -95,6 +94,59 @@ class Tester{
             return all_result;
         }
         bool equalityOperatorTest(){
+            bool all_result = true;
+            // Case 1: normal case
+            // when objects are equal and when objects are not equal
+            bool result = true;
+            CSR csr1;
+            csr1.m_m = 3;
+            csr1.m_n = 3;
+            csr1.m_nonzeros = 3;
+            csr1.m_values = new int[3]{1, 2, 3};
+            csr1.m_col_index = new int[3]{0, 2, 1};
+            csr1.m_row_index = new int[4]{0, 1, 2, 3};
+
+            CSR csr2;   // object with different values than first
+            csr2.m_m = 2;
+            csr2.m_n = 2;
+            csr2.m_nonzeros = 2;
+            csr2.m_values = new int[2]{1, 2};
+            csr2.m_col_index = new int[2]{0, 1};
+            csr2.m_row_index = new int[3]{0, 1, 2};
+
+            CSR csr3;   // object with same values as the first
+            csr3.m_m = 3;
+            csr3.m_n = 3;
+            csr3.m_nonzeros = 3;
+            csr3.m_values = new int[3]{1, 2, 3};
+            csr3.m_col_index = new int[3]{0, 2, 1};
+            csr3.m_row_index = new int[4]{0, 1, 2, 3};
+
+            result = result && (!(csr1 == csr2));
+            result = result && (csr1 == csr3);
+            cout << endl << "Equality operator normal case: ";
+            if (result){
+                cout << "PASS" << endl;
+            } else {
+                cout << "FAIL" << endl;
+            }
+            all_result = all_result && result;
+
+            // Case 2: edge case
+            // both objects are empty
+            result = true;
+            CSR csr4;
+            CSR csr5;
+            result = result && (csr4 == csr5);
+            cout << endl << "Equality operator edge case: ";
+            if (result){
+                cout << "PASS" << endl;
+            } else {
+                cout << "FAIL" << endl;
+            }
+            all_result = all_result && result;
+
+            return all_result;
 
         }
         bool getAtTest(){
@@ -118,6 +170,11 @@ int main() {
         cout << endl << "Compress function passed for all cases!" << endl;
     } else {
         cout << endl << "Compress function did not pass for all cases!" << endl;
+    }
+    if (test.equalityOperatorTest()){
+        cout << endl << "Equality operator passed for all cases!" << endl;
+    } else {
+        cout << endl << "Equality operator did not pass for all cases!" << endl;
     }
 
     return 0;
