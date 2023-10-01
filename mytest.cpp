@@ -150,7 +150,48 @@ class Tester{
 
         }
         bool getAtTest(){
+            bool all_result = true;
+            // Case 1: edge case
+            // make sure exception is thrown when row or col index is out of bounds
+            bool result = true;
+            CSR csr;
+            csr.m_m = 3;
+            csr.m_n = 3;
+            csr.m_values = new int[3]{1, 2, 3};
+            csr.m_col_index = new int[3]{0, 2, 1};
+            csr.m_row_index = new int[4]{0, 1, 2, 3};
+            try {
+                // invalid row index
+                csr.getAt(3, 1);
+                result = false; // should skip this line if exception thrown
+            } catch (const runtime_error& e){
+                result = result && (string(e.what()) == "Row index out of bounds");
+            }
+            cout << endl << "GetAt function exception 1: ";
+            if (result){
+                cout << "PASS" << endl;
+            } else {
+                cout << "FAIL" << endl;
+            }
+            all_result = all_result && result;
 
+            result = true;
+            try {
+                // invalid column index
+                csr.getAt(1, 3);
+                result = false; // should skip this line if exception thrown
+            } catch (const runtime_error& e) {
+                result = result && (string(e.what()) == "Column index out of bounds");
+            }
+            cout << endl << "GetAt function exception 2: ";
+            if (result){
+                cout << "PASS" << endl;
+            } else {
+                cout << "FAIL" << endl;
+            }
+            all_result = all_result && result;
+
+            return all_result;
         }
         // tests for CSRList class
         bool assignmentOperatorTest(){
