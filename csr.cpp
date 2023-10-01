@@ -86,32 +86,41 @@ void CSR::compress(int m, int n, int array[], int arraySize){
     // preconditions: object exists and a sparce matrix is input
     // postconditions: creates a compressed sparce row out of the matrix input
 
-    // allocate memory to all arrays
-    m_values = new int[arraySize]; // assume case where all elements are nonzero
-    m_col_index = new int[arraySize];
-    m_row_index = new int[m+1]; // always the number of rows + 1
-    m_m = m;
-    m_n = n;
+    // check that m*n is not 0*0
+    if (m>0 && n>0){
+        // allocate memory to all arrays
+        m_values = new int[arraySize]; // assume case where all elements are nonzero
+        m_col_index = new int[arraySize];
+        m_row_index = new int[m+1]; // always the number of rows + 1
+        m_m = m;
+        m_n = n;
 
-    // iterate threw array and check for nonzero elements
-    int v = 0;  // to keep track of place in values
-    int c = 0;  // to keep track of place in col_index
-    int r = 0;  // to keep track of place in row_index
-    m_row_index[0] = r;
-    r++; 
-    for (int i=0; i<arraySize; i++){
-        if (array[i]!=0){
-            m_values[v] = array[i];
-            v++;
-            m_col_index[c] = i%n;   // calculate col by doing index % num cols
-            c++;
+        // iterate threw array and check for nonzero elements
+        int v = 0;  // to keep track of place in values
+        int c = 0;  // to keep track of place in col_index
+        int r = 0;  // to keep track of place in row_index
+        m_row_index[0] = r;
+        r++; 
+        for (int i=0; i<arraySize; i++){
+            if (array[i]!=0){
+                m_values[v] = array[i];
+                v++;
+                m_col_index[c] = i%n;   // calculate col by doing index % num cols
+                c++;
+            }
+            if ((i+1)%n==0){
+                m_row_index[r] = v;
+                r++;
+            }
         }
-        if ((i+1)%n==0){
-            m_row_index[r] = v;
-            r++;
-        }
+        m_nonzeros = v;
+        if ((m*n)>arraySize){
+            for (int i=r; i<(m_m+1); i++){
+                m_row_index[i] = v;
+            }
+        }    
     }
-    m_nonzeros = v;
+    
 
 }
 int CSR::getAt(int row, int  col) const{
