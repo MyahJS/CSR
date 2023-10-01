@@ -217,6 +217,11 @@ int main() {
     } else {
         cout << endl << "Equality operator did not pass for all cases!" << endl;
     }
+    if (test.getAtTest()){
+        cout << endl << "GetAt function passed for all cases!" << endl;
+    } else {
+        cout << endl << "GetAt function did not pass for all cases!" << endl;
+    }
 
     return 0;
 }
