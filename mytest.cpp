@@ -50,6 +50,7 @@ class Tester{
             };
             CSR csrError1;
             csrError1.compress(4, 3, matrix2, 4);
+            csrError1.dump();
             result = result && (csrError1.m_m == 4);
             result = result && (csrError1.m_n == 3);
             result = result && (csrError1.m_nonzeros == 1);
