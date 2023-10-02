@@ -195,7 +195,58 @@ class Tester{
         }
         // tests for CSRList class
         bool assignmentOperatorTest(){
+            bool all_result = true;
+            // Case 1: normal case
+            // assign a not empty object to another object
+            bool result = true;
+            CSR aCsr;
+            CSR bCsr;
+            CSR cCsr;
+            aCsr.m_m = 3;
+            aCsr.m_n = 3;
+            aCsr.m_values = new int[3]{1, 2, 3};
+            aCsr.m_col_index = new int[3]{0, 2, 1};
+            aCsr.m_row_index = new int[4]{0, 1, 2, 3};
+            bCsr.m_m = 2;
+            bCsr.m_n = 2;
+            bCsr.m_nonzeros = 2;
+            bCsr.m_values = new int[2]{1, 2};
+            bCsr.m_col_index = new int[2]{0, 1};
+            bCsr.m_row_index = new int[3]{0, 1, 2};
+            CSRList sourceList1; // full list
+            sourceList1.insertAtHead(aCsr);
+            sourceList1.insertAtHead(bCsr);
+            sourceList1.insertAtHead(cCsr);
+            CSRList destList1;  // empty list
+            destList1 = sourceList1;
+            result = result && (destList1 == sourceList1);
+            cout << endl << "Assignment operator normal case: ";
+            if (result){
+                cout << "PASS" << endl;
+            } else {
+                cout << "FAIL" << endl;
+            }
+            all_result = all_result && result;
 
+            // Case 2: edge case
+            // assign an empty object to a not empty object
+            result = true;
+            CSRList sourceList2;    // empty list
+            CSRList destList2;  // full list
+            destList2.insertAtHead(cCsr);
+            destList2.insertAtHead(bCsr);
+            destList2.insertAtHead(aCsr);
+            destList2 = sourceList2;
+            result = result && (destList2 == sourceList2);
+            cout << endl << "Assignment operator edge case: ";
+            if (result){
+                cout << "PASS" << endl;
+            } else {
+                cout << "FAIL" << endl;
+            }
+            all_result = all_result && result;
+
+            return all_result;
         }
         bool listGetAtTest(){
 
@@ -221,6 +272,11 @@ int main() {
         cout << endl << "GetAt function passed for all cases!" << endl;
     } else {
         cout << endl << "GetAt function did not pass for all cases!" << endl;
+    }
+    if (test.assignmentOperatorTest()){
+        cout << endl << "Assignment operator passed for all cases!" << endl;
+    } else {
+        cout << endl << "Assignment operator did not pass for all cases!" << endl;
     }
 
     return 0;
