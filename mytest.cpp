@@ -213,6 +213,12 @@ class Tester{
             bCsr.m_values = new int[2]{1, 2};
             bCsr.m_col_index = new int[2]{0, 1};
             bCsr.m_row_index = new int[3]{0, 1, 2};
+            cCsr.m_m = 3;
+            cCsr.m_n = 3;
+            cCsr.m_nonzeros = 3;
+            cCsr.m_values = new int[3]{1, 2, 3};
+            cCsr.m_col_index = new int[3]{0, 2, 1};
+            cCsr.m_row_index = new int[4]{0, 1, 2, 3};
             CSRList sourceList1; // full list
             sourceList1.insertAtHead(aCsr);
             sourceList1.insertAtHead(bCsr);
