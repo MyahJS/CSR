@@ -258,7 +258,7 @@ class Tester{
             bool all_result = true;
             // Case 1: normal case
             // returns expected nonzero value
-            bool result;
+            bool result = true;
             CSR aCsr;
             CSR bCsr;
             CSR cCsr;
