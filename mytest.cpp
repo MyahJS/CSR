@@ -283,7 +283,7 @@ class Tester{
             csrlist.insertAtHead(aCsr);
             csrlist.insertAtHead(bCsr);
             csrlist.insertAtHead(cCsr);
-            result = result && (csrlist.getAt(1, 1, 2) == 2);
+            result = result && (csrlist.getAt(3, 0, 0) == 1);
             cout << endl << "GetAt function normal case: ";
             if (result){
                 cout << "PASS" << endl;
