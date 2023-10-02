@@ -151,7 +151,7 @@ class Tester{
         }
         bool getAtTest(){
             bool all_result = true;
-            // Case 1: edge case
+            // Case 1: error case
             // make sure exception is thrown when row or col index is out of bounds
             bool result = true;
             CSR csr;
@@ -225,8 +225,6 @@ class Tester{
             sourceList1.insertAtHead(cCsr);
             CSRList destList1;  // empty list
             destList1 = sourceList1;
-            sourceList1.dump();
-            destList1.dump();
             result = result && (destList1 == sourceList1);
             cout << endl << "Assignment operator normal case: ";
             if (result){
@@ -257,7 +255,61 @@ class Tester{
             return all_result;
         }
         bool listGetAtTest(){
+            bool all_result = true;
+            // Case 1: normal case
+            // returns expected nonzero value
+            bool result;
+            CSR aCsr;
+            CSR bCsr;
+            CSR cCsr;
+            aCsr.m_m = 3;
+            aCsr.m_n = 3;
+            aCsr.m_values = new int[3]{1, 2, 3};
+            aCsr.m_col_index = new int[3]{0, 2, 1};
+            aCsr.m_row_index = new int[4]{0, 1, 2, 3};
+            bCsr.m_m = 2;
+            bCsr.m_n = 2;
+            bCsr.m_nonzeros = 2;
+            bCsr.m_values = new int[2]{1, 2};
+            bCsr.m_col_index = new int[2]{0, 1};
+            bCsr.m_row_index = new int[3]{0, 1, 2};
+            cCsr.m_m = 3;
+            cCsr.m_n = 3;
+            cCsr.m_nonzeros = 3;
+            cCsr.m_values = new int[3]{1, 2, 3};
+            cCsr.m_col_index = new int[3]{0, 2, 1};
+            cCsr.m_row_index = new int[4]{0, 1, 2, 3};
+            CSRList csrlist;
+            csrlist.insertAtHead(aCsr);
+            csrlist.insertAtHead(bCsr);
+            csrlist.insertAtHead(cCsr);
+            result = result && (csrlist.getAt(1, 1, 2) == 2);
+            cout << endl << "GetAt function normal case: ";
+            if (result){
+                cout << "PASS" << endl;
+            } else {
+                cout << "FAIL" << endl;
+            }
+            all_result = all_result && result;
 
+            // Case 2: error case
+            // make sure exception is thrown if list index is out of range
+            result = true;
+            try {
+                csrlist.getAt(5, 0, 0);
+                result = false; // should skip this line
+            } catch (const runtime_error& e) {
+                result = result && (string(e.what()) == "List index out of range");
+            }
+            cout << endl << "GetAt function exception: ";
+            if (result){
+                cout << "PASS" << endl;
+            } else {
+                cout << "FAIL" << endl;
+            }
+            all_result = all_result && result;
+
+            return all_result;
         }
     private:
     // for possible helpers
@@ -285,6 +337,11 @@ int main() {
         cout << endl << "Assignment operator passed for all cases!" << endl;
     } else {
         cout << endl << "Assignment operator did not pass for all cases!" << endl;
+    }
+    if (test.listGetAtTest()){
+        cout << endl << "GetAt function (list version) passed for all cases!" << endl;
+    } else {
+        cout << endl << "GetAt function (list version) did not pass for all cases!" << endl;
     }
 
     return 0;
