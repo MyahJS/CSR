@@ -219,6 +219,8 @@ class Tester{
             sourceList1.insertAtHead(cCsr);
             CSRList destList1;  // empty list
             destList1 = sourceList1;
+            sourceList1.dump();
+            destList1.dump();
             result = result && (destList1 == sourceList1);
             cout << endl << "Assignment operator normal case: ";
             if (result){
