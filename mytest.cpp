@@ -260,30 +260,15 @@ class Tester{
             // returns expected nonzero value
             bool result = true;
             CSR aCsr;
+            int array1[] = {10,20,0,0,0,0,0,30,0,40,0,0,0,0,50,60,70,0,0,0,0,0,0,80};
+            aCsr.compress(4,6,array1,24);
             CSR bCsr;
-            CSR cCsr;
-            aCsr.m_m = 3;
-            aCsr.m_n = 3;
-            aCsr.m_values = new int[3]{1, 2, 3};
-            aCsr.m_col_index = new int[3]{0, 2, 1};
-            aCsr.m_row_index = new int[4]{0, 1, 2, 3};
-            bCsr.m_m = 2;
-            bCsr.m_n = 2;
-            bCsr.m_nonzeros = 2;
-            bCsr.m_values = new int[2]{1, 2};
-            bCsr.m_col_index = new int[2]{0, 1};
-            bCsr.m_row_index = new int[3]{0, 1, 2};
-            cCsr.m_m = 3;
-            cCsr.m_n = 3;
-            cCsr.m_nonzeros = 3;
-            cCsr.m_values = new int[3]{1, 2, 3};
-            cCsr.m_col_index = new int[3]{0, 2, 1};
-            cCsr.m_row_index = new int[4]{0, 1, 2, 3};
+            int array2[] = {0,0,0,0,100,200,0,0,300};
+            bCsr.compress(3,3,array2,9);
             CSRList csrlist;
             csrlist.insertAtHead(aCsr);
             csrlist.insertAtHead(bCsr);
-            csrlist.insertAtHead(cCsr);
-            result = result && (csrlist.getAt(3, 0, 0) == 1);
+            result = result && (csrlist.getAt(1,2,4) == 70);
             cout << endl << "GetAt function normal case: ";
             if (result){
                 cout << "PASS" << endl;
